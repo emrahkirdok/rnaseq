@@ -6,14 +6,14 @@ END=${2}
 	trimmomatic PE -threads 8 \
 		data/raw/${END}/${SRR}_1.fastq.gz \
 		data/raw/${END}/${SRR}_2.fastq.gz \
-		results/processed/${END}/${SRR}_1.fastq.gz \
-		results/processed/${END}/${SRR}_unpaired_1.fastq.gz \
-		results/processed/${END}/${SRR}_2.fastq.gz \
-		results/processed/${END}/${SRR}_unpaired_2.fastq.gz \
+		results/processed/trimmomatic/${END}/${SRR}_1.fastq.gz \
+		results/processed/trimmomatic/${END}/${SRR}_unpaired_1.fastq.gz \
+		results/processed/trimmomatic/${END}/${SRR}_2.fastq.gz \
+		results/processed/trimmomatic/${END}/${SRR}_unpaired_2.fastq.gz \
 		MINLEN:36 LEADING:20 TRAILING:20 ILLUMINACLIP:${CONDA_PREFIX}/share/trimmomatic/adapters/TruSeq3-PE.fa:2:30:10:2:True \
 		SLIDINGWINDOW:4:5
 
-	fastqc results/processed/${END}/${SRR}_1.fastq.gz results/processed/${END}/${SRR}_2.fastq.gz
+	fastqc results/processed/trimmomatic/${END}/${SRR}_1.fastq.gz results/processed/trimmomatic/${END}/${SRR}_2.fastq.gz
 
 #alternatif : java -jar trimmomatic-0.39.jar PE data/raw/${END}/${SRR}_1.fastq.gz data/raw/${END}/${SRR}_2.fastq.gz results/processed/${END}/${SRR}_1_paired.fastq.gz results/processed/${END}/${SRR}_1_unpaired.fastq.gz results/processed/${END}/${SRR}_2_paired.fastq.gz results/processed/${END}/${SRR}_2_unpaired.fastq.gz ILLUMINACLIP:TruSeq3-PE.fa:2:30:10:2:True LEADING:3 TRAILING:3 MINLEN:30
 

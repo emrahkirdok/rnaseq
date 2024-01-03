@@ -5,11 +5,11 @@ END=${2}
 
 	trimmomatic SE -threads 8 \
 		data/raw/${END}/${SRR}.fastq.gz \
-		results/processed/${END}/${SRR}.fastq.gz \
+		results/processed/trimmomatic/${END}/${SRR}.fastq.gz \
 		MINLEN:36 LEADING:20 TRAILING:20 ILLUMINACLIP:${CONDA_PREFIX}/share/trimmomatic/adapters/TruSeq3-SE.fa:2:30:10 \
 		SLIDINGWINDOW:4:5
 
-	fastqc results/processed/${END}/${SRR}.fastq.gz
+	fastqc results/processed/trimmomatic/${END}/${SRR}.fastq.gz
 
 #alternafit : java -jar trimmomatic-0.35.jar SE -phred20 data/${END}/${SRR} results/processed/${END}/${SRR}_trimmed.fastq.gz ILLUMINACLIP:TruSeq3-SE:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:30
 
