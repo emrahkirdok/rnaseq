@@ -3,7 +3,7 @@
 SRR=${1}
 END=${2}
 
-	trimmomatic SE -threads 1 \
+	trimmomatic SE -threads 8 \
 		data/raw/${END}/${SRR}.fastq.gz \
 		results/processed/${END}/${SRR}.fastq.gz \
 		MINLEN:36 LEADING:20 TRAILING:20 ILLUMINACLIP:${CONDA_PREFIX}/share/trimmomatic/adapters/TruSeq3-SE.fa:2:30:10 \

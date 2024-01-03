@@ -3,7 +3,7 @@
 SRR=${1}
 END=${2}
 
-	trimmomatic PE -threads 16 \
+	trimmomatic PE -threads 8 \
 		data/raw/${END}/${SRR}_1.fastq.gz \
 		data/raw/${END}/${SRR}_2.fastq.gz \
 		results/processed/${END}/${SRR}_1.fastq.gz \
