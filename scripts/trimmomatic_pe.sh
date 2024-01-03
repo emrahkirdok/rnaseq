@@ -3,7 +3,15 @@
 SRR=${1}
 END=${2}
 
-	trimmomatic PE -threads 4 data/raw/${END}/${SRR}_1.fastq.gz data/raw/${END}/${SRR}_2.fastq.gz results/processed/${END}/${SRR}_1.fastq.gz results/processed/${END}/${SRR}_unpaired_1.fastq.gz results/processed/${END}/${SRR}_2.fastq.gz results/processed/${END}/${SRR}_unpaired_2.fastq.gz MINLEN:30 LEADING:20 TRAILING:20
+	trimmomatic PE -threads 16 \
+		data/raw/${END}/${SRR}_1.fastq.gz \
+		data/raw/${END}/${SRR}_2.fastq.gz \
+		results/processed/${END}/${SRR}_1.fastq.gz \
+		results/processed/${END}/${SRR}_unpaired_1.fastq.gz \
+		results/processed/${END}/${SRR}_2.fastq.gz \
+		results/processed/${END}/${SRR}_unpaired_2.fastq.gz \
+		MINLEN:36 LEADING:20 TRAILING:20 ILLUMINACLIP:${CONDA_PREFIX}/share/trimmomatic/adapters/TruSeq3-PE.fa:2:30:10:2:True \
+		SLIDINGWINDOW:4:5
 
 	fastqc results/processed/${END}/${SRR}_1.fastq.gz results/processed/${END}/${SRR}_2.fastq.gz
 
