@@ -1,11 +1,13 @@
 #!/bin/bash
 
-mkdir -p results/alignment/bowtie2
 
 REFERENCE=GCA_000007565.2_ASM756v2_genomic.fna
-THREADS=4
+THREADS=8
+TRIMMING_TOOL=$2
 
-bowtie2-build data/ref/${REFERENCE} data/ref/${REFERENCE}
+mkdir -p results/alignment/bowtie2/${TRIMMING_TOOL}
+
+#bowtie2-build data/ref/${REFERENCE} data/ref/${REFERENCE}
 
 while read LINE
 do 
@@ -14,9 +16,9 @@ do
 
         if [[ ${END} == "pe" ]]
         then 
-            ./scripts/bowtie_pe.sh ${SRR} ${END} ${REFERENCE}
+            sbatch -M snowy --time=08:00:00 --job-name=bowtie2_${TRIMMING_TOOL}_${SRR} --output=slurm_logs/log_bowtie2_${TRIMMING_TOOL}_${SRR}.out --ntasks-per-node 8 -A naiss2023-5-252 --mail-type=FAIL ./scripts/bowtie_pe.sh ${SRR} ${END} ${REFERENCE} ${TRIMMING_TOOL}
         else 
-            ./scripts/bowtie_se.sh ${SRR} ${END} ${REFERENCE}
+            sbatch -M snowy --time=08:00:00 --job-name=bowtie2_${TRIMMING_TOOL}_${SRR} --output=slurm_logs/log_bowtie2_${TRIMMING_TOOL}_${SRR}.out --ntasks-per-node 8 -A naiss2023-5-252 --mail-type=FAIL ./scripts/bowtie_se.sh ${SRR} ${END} ${REFERENCE} ${TRIMMING_TOOL}
         fi
 
 done < $1
