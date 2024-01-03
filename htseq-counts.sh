@@ -1,10 +1,12 @@
 #!/bin/bash
 
-mkdir -p results/counts/
 
-#
 #htseq_count [options] alignment_files gff_file or phyton -m HTSeq.scripts.count [options] alignment_files gff_file
-TOOL=$2
+TRIMMING_TOOL=$2
+ALIGNMENT_TOOL=$3
+COUNT_TOOL=htseq-count
+
+mkdir -p results/counts/${COUNT_TOOL}/${ALIGNMENT_TOOL}/${TRIMMING_TOOL}
 
 while read LINE
 do
@@ -13,11 +15,9 @@ do
 
 	if [ ${END} == "pe" ]
 	then
-		htseq-count results/alignment/${TOOL}/${SRR}.sorted.bam data/ref/GCA_000007565.2_ASM756v2_genomic.gtf -n 4 -t gene > results/counts/counts-${SRR}-${TOOL}.txt
-	#phyton -m HTSeq.scripts.count -r -c results/counts/counts-${SRR}-${TOOL}_pe.txt results/alignment/bowtie2/${TOOL}/${SRR}.bam data/ref/GCA_000007565.2_ASM756v2_genomic.gtf
+		sbatch -M snowy --time=06:00:00 --job-name=${COUNT_TOOL}_${ALINGMENT_TOOL}_${TRIMMING_TOOL}_${SRR} --output=slurm_logs/htseq_${ALIGNMENT_TOOL}_${TRIMMING_TOOL}_${SRR}.out --ntasks-per-node 8 -A naiss2023-5-252 --mail-type=FAIL scripts/htseq.sh ${SRR} ${TRIMMING_TOOL} ${ALIGNMENT_TOOL} ${COUNT_TOOL}
 	else
-		htseq-count results/alignment/${TOOL}/${SRR}.sorted.bam data/ref/GCA_000007565.2_ASM756v2_genomic.gtf -n 4 -t gene > results/counts/counts-${SRR}-${TOOL}.txt
-	#phyton -m HTSeq.scripts.count -c results/counts/counts-${SRR}-${TOOL}_se.txt results/alignment/bowtie2/${TOOL}/${SRR}.bam data/ref/GCA_000007565.2_ASM756v2_genomic.gtf
-fi
+		sbatch -M snowy --time=06:00:00 --job-name=${COUNT_TOOL}_${ALINGMENT_TOOL}_${TRIMMING_TOOL}_${SRR} --output=slurm_logs/htseq_${ALIGNMENT_TOOL}_${TRIMMING_TOOL}_${SRR}.out --ntasks-per-node 8 -A naiss2023-5-252 --mail-type=FAIL scripts/htseq.sh ${SRR} ${TRIMMING_TOOL} ${ALIGNMENT_TOOL} ${COUNT_TOOL}
+	fi
 
 done < $1
