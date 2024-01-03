@@ -1,7 +1,7 @@
 #!/bin/bash
 
-mkdir -p results/processed/se
-mkdir -p results/processed/pe
+mkdir -p results/processed/cutadapt/se
+mkdir -p results/processed/cutadapt/pe
 
 while read LINE
 do
@@ -11,13 +11,13 @@ do
 	if [[ ${END} == "pe" ]]
 	then
 		echo "pe"
-		./scripts/cutadapt_pe.sh ${SRR} ${END}
+		sbatch -M snowy --time=06:00:00 --job-name=trimmomatic_${SRR} --output=slurm_logs/log_trimmomatic${SRR}.out --ntasks-per-node 8 -A naiss2023-5-252 --mail-type=FAIL ./scripts/cutadapt_pe.sh ${SRR} ${END}
 	else
 
 		echo "se"
 		echo ${SRR}
 		echo ${END}
-		./scripts/cutadapt_se.sh ${SRR} ${END}
+		sbatch -M snowy --time=06:00:00 --job-name=trimmomatic_${SRR} --output=slurm_logs/log_trimmomatic${SRR}.out --ntasks-per-node 8 -A naiss2023-5-252 --mail-type=FAIL ./scripts/cutadapt_se.sh ${SRR} ${END}
 	fi
 
 done < $1 
