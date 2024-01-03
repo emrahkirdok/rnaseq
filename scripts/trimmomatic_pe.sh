@@ -10,8 +10,9 @@ END=${2}
 		results/processed/trimmomatic/${END}/${SRR}_unpaired_1.fastq.gz \
 		results/processed/trimmomatic/${END}/${SRR}_2.fastq.gz \
 		results/processed/trimmomatic/${END}/${SRR}_unpaired_2.fastq.gz \
-		MINLEN:36 LEADING:20 TRAILING:20 ILLUMINACLIP:${CONDA_PREFIX}/share/trimmomatic/adapters/TruSeq3-PE.fa:2:30:10:2:True \
-		SLIDINGWINDOW:4:5
+		ILLUMINACLIP:${CONDA_PREFIX}/share/trimmomatic/adapters/TruSeq3-PE.fa:2:30:10:2:True LEADING:20 TRAILING:20 \
+		MINLEN:36
+		
 
 	fastqc results/processed/trimmomatic/${END}/${SRR}_1.fastq.gz results/processed/trimmomatic/${END}/${SRR}_2.fastq.gz
 

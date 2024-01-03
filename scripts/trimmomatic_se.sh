@@ -6,8 +6,8 @@ END=${2}
 	trimmomatic SE -threads 8 \
 		data/raw/${END}/${SRR}.fastq.gz \
 		results/processed/trimmomatic/${END}/${SRR}.fastq.gz \
-		MINLEN:36 LEADING:20 TRAILING:20 ILLUMINACLIP:${CONDA_PREFIX}/share/trimmomatic/adapters/TruSeq3-SE.fa:2:30:10 \
-		SLIDINGWINDOW:4:5
+		ILLUMINACLIP:${CONDA_PREFIX}/share/trimmomatic/adapters/TruSeq3-SE.fa:2:30:10 LEADING:20 TRAILING:20 \
+		MINLEN:36
 
 	fastqc results/processed/trimmomatic/${END}/${SRR}.fastq.gz
 
