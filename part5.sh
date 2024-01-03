@@ -1,6 +1,10 @@
 #!/bin/bash
 
-TOOL=$2
+TRIMMING_TOOL=$2
+ALIGNMENT_TOOL=$3
+COUNT_TOOL=feature-counts
+
+mkdir -p results/counts/${COUNT_TOOL}/${ALIGNMENT_TOOL}/${TRIMMING_TOOL}
 
 while read LINE
 do
@@ -9,9 +13,9 @@ do
 
         if [ ${END} == "pe" ]
         then
-		featureCounts -p -T4 -t CDS -a data/ref/GCA_000007565.2_ASM756v2_genomic.gtf -o results/counts/counts-${SRR}-${TOOL}.txt results/alignment/${TOOL}/${SRR}.sorted.bam
+		sbatch -M snowy --time=06:00:00 --job-name=${COUNT_TOOL}_${ALINGMENT_TOOL}_${TRIMMING_TOOL}_${SRR} --output=slurm_logs/${COUNT_TOOL}_${ALIGNMENT_TOOL}_${TRIMMING_TOOL}_${SRR}.out --ntasks-per-node 8 -A naiss2023-5-252 --mail-type=FAIL scripts/feature_counts_pe.sh ${SRR} ${TRIMMING_TOOL} ${ALIGNMENT_TOOL} ${COUNT_TOOL} 
         else
-		featureCounts -T4 -t CDS -a data/ref/GCA_000007565.2_ASM756v2_genomic.gtf -o results/counts/counts-${SRR}-${TOOL}.txt results/alignment/${TOOL}/${SRR}.sorted.bam
+		sbatch -M snowy --time=06:00:00 --job-name=${COUNT_TOOL}_${ALINGMENT_TOOL}_${TRIMMING_TOOL}_${SRR} --output=slurm_logs/${COUNT_TOOL}_${ALIGNMENT_TOOL}_${TRIMMING_TOOL}_${SRR}.out --ntasks-per-node 8 -A naiss2023-5-252 --mail-type=FAIL scripts/feature_counts_se.sh ${SRR} ${TRIMMING_TOOL} ${ALIGNMENT_TOOL} ${COUNT_TOOL} 
         fi
 
 done < $1
