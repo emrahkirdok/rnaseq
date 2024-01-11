@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PATH=${PATH}:${CONDA_PREFIX}/bin/
+PATH=${PATH}:/home/ekirdok/.conda/envs/htseq_env/bin/
 
 SRR=$1
 TRIMMING_TOOL=$2

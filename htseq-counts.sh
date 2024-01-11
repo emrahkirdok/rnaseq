@@ -15,7 +15,7 @@ do
 
 	if [ ${END} == "pe" ]
 	then
-		sbatch -M snowy --time=06:00:00 --job-name=${COUNT_TOOL}_${ALINGMENT_TOOL}_${TRIMMING_TOOL}_${SRR} --output=slurm_logs/htseq_${ALIGNMENT_TOOL}_${TRIMMING_TOOL}_${SRR}.out --ntasks-per-node 8 -A naiss2023-5-252 --mail-type=FAIL scripts/htseq.sh ${SRR} ${TRIMMING_TOOL} ${ALIGNMENT_TOOL} ${COUNT_TOOL}
+		sbatch -M snowy --time=06:00:00 --job-name=${COUNT_TOOL}_${ALIGNMENT_TOOL}_${TRIMMING_TOOL}_${SRR} --output=slurm_logs/htseq_${ALIGNMENT_TOOL}_${TRIMMING_TOOL}_${SRR}.out --ntasks-per-node 8 -A naiss2023-5-252 --mail-type=FAIL scripts/htseq.sh ${SRR} ${TRIMMING_TOOL} ${ALIGNMENT_TOOL} ${COUNT_TOOL}
 	else
 		sbatch -M snowy --time=06:00:00 --job-name=${COUNT_TOOL}_${ALINGMENT_TOOL}_${TRIMMING_TOOL}_${SRR} --output=slurm_logs/htseq_${ALIGNMENT_TOOL}_${TRIMMING_TOOL}_${SRR}.out --ntasks-per-node 8 -A naiss2023-5-252 --mail-type=FAIL scripts/htseq.sh ${SRR} ${TRIMMING_TOOL} ${ALIGNMENT_TOOL} ${COUNT_TOOL}
 	fi
