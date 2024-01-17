@@ -4,14 +4,9 @@ channels:
   - conda-forge
 dependencies:
   - r-base
-  - bioconductor-biocinstaller
-  - bioconductor-rsamtools
-  - bioconductor-genomicalignments
-  - bioconductor-biocparallel
-  - bioconductor-genomicfeatures
-  - bioconductor-deseq2
-  - bioconductor-ggplot2
-  - bioconductor-pheatmap
   - r-kableExtra
   - r-ggrepel
-  - subread
+  - bioconductor-biocinstaller
+  - bioconductor-deseq2
+  - r-ggplot2
+  - r-pheatmap
