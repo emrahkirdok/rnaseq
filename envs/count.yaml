@@ -1,0 +1,6 @@
+name: counts
+channels:
+  - bioconda
+dependencies:
+  - python=3.8
+  - subread
