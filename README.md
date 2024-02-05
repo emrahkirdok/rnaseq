@@ -12,7 +12,7 @@ Bu döküman, tez kapsamında hazırlanmış olup; RNA dizileme analizi çalış
 
 RNA dizileme analizi, gen ekspresyon seviyelerinin analizinde kullanılan bir yöntemdir. 
 
-RNA dizileme teknolojisi sayesinde transkriptomu oluşturan RNA dizilerinin hassas bir şekilde haritası oluşturulur. RNA dizileme analizi, hücrede bulunan hangi genlerin ifade edilip edilmediğini ve hangi genlerin daha çok hangilerinin daha az ifade edildiğini belirler.
+RNA dizileme teknolojisi sayesinde transkriptomu oluşturan RNA dizilerinin hassas bir şekilde haritası oluşturulur. RNA dizileme analizi, hücrede bulunan hangi genlerin ifade edilip edilmediğini ve hangi genlerin daha çok, hangilerinin daha az ifade edildiğini belirler.
 
 Canlıdaki gen anlatımı tespit edilir ve başka örneklerle karşılaştırılır. 
 
@@ -65,7 +65,7 @@ gibi görünecek şekilde kodu yazın. Unutmayın, bu bir örnektir. Siz sizin k
 
 Terminal üzerinde yüklemeyi yönlendirildiğiniz şekilde tamamlayın.
 
-Şimdi conda çevrelerini kurup aktive edeceğiz. Bu ççevrelerde, yapmak istediğimiz işe uygun olan paketler bir aradadır. Yapmak istediğimiz işe uygun olan çevrede işlerimizi yürütmeliyiz.
+Şimdi conda çevrelerini kurup aktive edeceğiz. Bu çevrelerde, yapmak istediğimiz işe uygun olan paketler bir aradadır. Yapmak istediğimiz işe uygun olan çevrede işlerimizi yürütmeliyiz.
 
 RNAseq çevremizi kuralım;
 
@@ -209,6 +209,7 @@ veya
 # Adım 3: İşlenmiş Yeni Nesil Dizileme Verilerinin Referans Genoma Hizalanması
 
 Bu adım için `part3.sh` veya `part4.sh` betiğini kullanıyoruz. 
+
 `part3.sh` betiğinde BWA aracı, `part4.sh` betiğinde de Bowtie2 aracı ile çalışılmaktadır. Her iki araçla da yeni nesil dizileme verilerinin referans genoma hizalanma adımı gerçekleştirilir.
  
 Bu araçlar, RNA-seq okumalarını referans genoma hizalayacak ve hizalamaları bir SAM dosyası biçiminde çıkaracaktır. 
